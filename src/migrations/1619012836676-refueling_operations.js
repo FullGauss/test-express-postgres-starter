@@ -13,15 +13,15 @@ module.exports.up = async function (next) {
   );
   `);
 
-  await client.query(`
-  INSERT INTO refueling_operations (gas_station_id, car_id, fuel_capacity) 
-  VALUES
-  (0, 1, 10),
-  (1, 2, 15),
-  (2, 3, 20),
-  (3, 4, 25),
-  (4, 0, 30);
-  `);
+  // await client.query(`
+  // INSERT INTO refueling_operations (gas_station_id, car_id, fuel_capacity) 
+  // VALUES
+  // (0, 1, 10),
+  // (1, 2, 15),
+  // (2, 3, 20),
+  // (3, 4, 25),
+  // (4, 0, 30);
+  // `);
 
   await client.release(true);
 
