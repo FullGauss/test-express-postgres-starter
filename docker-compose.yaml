@@ -24,3 +24,15 @@ services:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: pass
       POSTGRES_DB: db
+
+  pgadmin:
+    image: dpage/pgadmin4
+    depends_on:
+        - postgres
+    restart: always
+    ports:
+        - '5555:9000'
+    environment:
+        PGADMIN_DEFAULT_EMAIL: pgadmin4@pgadmin.org
+        PGADMIN_DEFAULT_PASSWORD: admin
+        PGADMIN_LISTEN_PORT: 9000

@@ -5,14 +5,13 @@ module.exports.up = async function (next) {
 
   await client.query(`
   CREATE TABLE IF NOT EXISTS refueling_operations (
-    gas_station_id int,
-    car_id int,
-    fuel_capacity int,
-    FOREIGN KEY (gas_station_id) REFERENCES gas_stations(id) ON DELETE SET NULL ON UPDATE SET NULL,
-    FOREIGN KEY (car_id) REFERENCES cars_info(id) ON DELETE SET NULL ON UPDATE SET NULL
+    gas_station_id int NOT NULL,
+    car_id int NOT NULL,
+    fuel_capacity int NOT NULL
   );
   `);
-
+  // FOREIGN KEY (gas_station_id) REFERENCES gas_stations(id) ON DELETE SET NULL ON UPDATE SET NULL,
+  // FOREIGN KEY (car_id) REFERENCES cars_info(id) ON DELETE SET NULL ON UPDATE SET NULL
   // await client.query(`
   // INSERT INTO refueling_operations (gas_station_id, car_id, fuel_capacity) 
   // VALUES
