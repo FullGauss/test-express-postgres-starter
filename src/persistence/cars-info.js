@@ -3,11 +3,13 @@ const db = require('./db');
 
 module.exports = {
   async create(brand, number) {
-    await db.query(sql`
+    const {rows} = await db.query(sql`
     INSERT INTO cars_info (brand, number)
-      VALUES (${brand}, ${number});
+      VALUES (${brand}, ${number})
+      RETURNING *;
     `);
-    return brand
+    const result = rows[0];
+    return result
   },
   async find(id) {
     const {rows} = await db.query(sql`
@@ -28,9 +30,15 @@ module.exports = {
     const result = rows;
     return result;
   },
-//   async delete(id) {
-//     await db.query(sql`
-//     DELETE FROM sessions WHERE id = ${id};
-//     `);
-//   }
+  async update(id, brand, number) {
+    const {rows} = await db.query(sql`
+    UPDATE cars_info
+      SET brand = ${brand},
+      number = ${number}
+      WHERE id = ${id}
+    RETURNING *;
+    `);
+    const result = rows[0];
+    return result
+  },
 };

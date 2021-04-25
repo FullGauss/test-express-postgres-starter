@@ -12,11 +12,13 @@
 
 PgAdmin по умолчанию запускается по адресу `localhost:5555` порт можно поменять с помощью параметра `PG_ADMIN_PORT` в .env файле.
 
-Вы можете подключиться к Postgres используя psql клиент или PgAdmin:
+Вы можете подключиться к Postgres используя psql клиент:
 
 ```sh
 psql postgres://user:pass@localhost:POSTGRES_PORT/db
 ```
+
+Или PgAdmin: `postgres://user:pass@postgres:5432/db`;
 
 Для избежания возможных ошибок лучше войти внутрь контейнера с помощью команды. 
 ```sh
@@ -25,6 +27,11 @@ docker-compose run app bash
 И запустите команду для установки зависимостей (на всякий случай)
 ```sh
 npm install
+```
+
+После необходимо установить миграции
+```sh
+npm run migrate up
 ```
 
 ## Настройка и управление базой данных
