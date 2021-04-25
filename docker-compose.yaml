@@ -10,7 +10,7 @@ services:
       NODE_ENV: development
       PORT: 3000
     ports:
-      - "3000:3000"
+      - "${API_PORT:-3000}:3000"
     command: npm run dev
     volumes:
       - .:/app/
@@ -19,7 +19,7 @@ services:
   postgres:
     image: postgres:10.4
     ports:
-      - "35432:5432"
+      - "${POSTGRES_PORT:-35432}:5432"
     environment:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: pass
@@ -31,7 +31,7 @@ services:
         - postgres
     restart: always
     ports:
-        - '5555:9000'
+        - '${PG_ADMIN_PORT:-5555}:9000'
     environment:
         PGADMIN_DEFAULT_EMAIL: pgadmin4@pgadmin.org
         PGADMIN_DEFAULT_PASSWORD: admin

@@ -1,16 +1,15 @@
 const express = require('express');
-
 const morgan = require('morgan');
 const clientSession = require('client-sessions');
 const helmet = require('helmet');
 
-const {SESSION_SECRET} = require('./config');
+const {SESSION_SECRET, CORS_CONFIG} = require('./config');
 
 const app = express();
 const api = require('./src/api');
 
 app.use (function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', 'http://localhost:8080');
+  res.header('Access-Control-Allow-Origin', CORS_CONFIG.origin);
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
   res.header('Access-Control-Allow-Headers', 'Content-Type');
   res.header('Access-Control-Allow-Credentials', true);
